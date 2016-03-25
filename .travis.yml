@@ -1,0 +1,21 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t easypi/shadowsocks-libev .
+  - docker run -d -p 127.0.0.1:8388:8388 -e PASSWORD=helloworld --name server easypi/shadowsocks-libev
+  - docker run -d -p 127.0.0.1:1080:1080 --link server:server --name client easypi/shadowsocks-libev
+    ss-local -s server -p 8388 -m aes-256-cfb -k helloworld -b 0.0.0.0 -l 1080 -t 300 --fast-open
+  - docker ps -a
+
+script:
+  - curl -I -x socks5h://127.0.0.1:1080 https://www.google.com/
+  - curl -I -x socks5h://127.0.0.1:1080 https://www.youtube.com/
+  - curl -I -x socks5h://127.0.0.1:1080 https://www.twitter.com/
+  - curl -I -x socks5h://127.0.0.1:1080 https://www.facebook.com/
+
+after_success:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push easypi/shadowsocks-libev
