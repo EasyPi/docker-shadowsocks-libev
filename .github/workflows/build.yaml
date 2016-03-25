@@ -1,0 +1,36 @@
+name: Docker Build Images
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - Dockerfile
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: docker/setup-qemu-action@v1
+
+      - uses: docker/setup-buildx-action@v1
+
+      - uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - uses: docker/build-push-action@v2
+        with:
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          tags: easypi/shadowsocks-libev:latest
+          push: true
+
+      - uses: slackapi/slack-github-action@v1.16.0
+        with:
+          channel-id: github
+          slack-message: 'docker build ok'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

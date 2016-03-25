@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+
+  server:
+    image: easypi/shadowsocks-libev
+    ports:
+      - "8388:8388/tcp"
+      - "8388:8388/udp"
+    environment:
+      - METHOD=aes-256-cfb
+      - PASSWORD=5ouMnqPyzseL
+    restart: unless-stopped
+
+  client:
+    image: easypi/shadowsocks-libev
+    command:
+      ss-local -s 1.2.3.4
+               -p 8388
+               -m aes-256-cfb
+               -k 5ouMnqPyzseL
+               -b 0.0.0.0
+               -l 1080
+               -t 60
+               --fast-open
+    ports:
+      - "1080:1080"
+    restart: unless-stopped
