@@ -24,14 +24,18 @@ Current version: [2.4.6][6]
 
 - Run these commands:
 
-        # On Server (1.2.3.4)
+        # On x86 server (1.2.3.4)
         $ docker-compose up -d server
 
-        # On Client (192.168.1.234)
+        # On x86 client (192.168.1.234)
         $ docker-compose up -d client
 
-        # On LAN PC (192.168.1.XXX)
+        # On arm client (192.168.1.254)
+        $ docker-compose up -d client-arm
+
+        # On any LAN PC (192.168.1.XXX)
         $ curl -x socks5h://192.168.1.234:1080 https://www.youtube.com/
+        $ curl -x socks5h://192.168.1.254:1080 https://www.youtube.com/
 
 - Set socks5 proxy in your favorite web browser.
 

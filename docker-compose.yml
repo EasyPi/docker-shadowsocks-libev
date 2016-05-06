@@ -8,6 +8,21 @@ server:
   restart: always
 
 client:
+  image: easypi/shadowsocks-libev
+  command: >
+    ss-local -s 1.2.3.4
+             -p 8388
+             -m aes-256-cfb
+             -k 5ouMnqPyzseL
+             -b 0.0.0.0
+             -l 1080
+             -t 300
+             --fast-open
+  ports:
+    - "1080:1080"
+  restart: always
+
+client-arm:
   image: easypi/shadowsocks-libev-arm
   ports:
     - "1080:1080"
