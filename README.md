@@ -1,7 +1,8 @@
 docker-shadowsocks-libev
 ========================
 
-![](https://travis-ci.org/EasyPi/docker-shadowsocks-libev.svg)
+[![](https://travis-ci.org/EasyPi/docker-shadowsocks-libev.svg)](https://travis-ci.org/EasyPi/docker-shadowsocks-libev)
+[![](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
 
 name                               | size
 ---------------------------------- | ---------------------------------------------------------------------------
