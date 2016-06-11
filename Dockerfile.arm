@@ -11,15 +11,14 @@ ENV SS_DIR shadowsocks-libev-$SS_VER
 ENV SS_DEP autoconf build-base curl libtool linux-headers openssl-dev
 
 RUN set -ex \
-    && apk add --update $SS_DEP \
+    && apk add --no-cache $SS_DEP \
     && curl -sSL $SS_URL | tar xz \
     && cd $SS_DIR \
         && ./configure \
         && make install \
         && cd .. \
         && rm -rf $SS_DIR \
-    && apk del --purge $SS_DEP \
-    && rm -rf /var/cache/apk/*
+    && apk del --purge $SS_DEP
 
 ENV SERVER_ADDR=
 ENV SERVER_PORT 8388
