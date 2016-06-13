@@ -8,15 +8,18 @@ services:
   - docker
 
 env:
-  - URL=https://www.facebook.com/
-  - URL=https://www.google.com/
-  - URL=https://www.twitter.com/
-  - URL=https://www.youtube.com/
+  global:
+    - SS_VER=2.4.7
+  matrix:
+    - URL=https://www.facebook.com/
+    - URL=https://www.google.com/
+    - URL=https://www.twitter.com/
+    - URL=https://www.youtube.com/
 
 before_install:
-  - docker build -t easypi/shadowsocks-libev .
-  - docker run -d -p 127.0.0.1:8388:8388 -e PASSWORD=helloworld --name server easypi/shadowsocks-libev
-  - docker run -d -p 127.0.0.1:1080:1080 --link server:server --name client easypi/shadowsocks-libev
+  - docker build -t easypi/shadowsocks-libev:$SS_VER .
+  - docker run -d -p 127.0.0.1:8388:8388 -e PASSWORD=helloworld --name server easypi/shadowsocks-libev:$SS_VER
+  - docker run -d -p 127.0.0.1:1080:1080 --link server:server --name client easypi/shadowsocks-libev:$SS_VER
     ss-local -s server -p 8388 -m aes-256-cfb -k helloworld -b 0.0.0.0 -l 1080 -t 300 --fast-open
   - docker ps -a
 
@@ -24,5 +27,10 @@ script:
   - curl -I -x socks5h://127.0.0.1:1080 $URL
 
 after_success:
-  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker push easypi/shadowsocks-libev
+  if [[ $TRAVIS_TAG && $URL == *youtube* ]];
+  then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker tag easypi/shadowsocks-libev:$SS_VER easypi/shadowsocks-libev:latest;
+    docker push easypi/shadowsocks-libev:$SS_VER;
+    docker push easypi/shadowsocks-libev:latest;
+  fi
