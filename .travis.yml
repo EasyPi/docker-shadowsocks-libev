@@ -1,7 +1,17 @@
 sudo: required
 
+dist: trusty
+
+language: generic
+
 services:
   - docker
+
+env:
+  - URL=https://www.facebook.com/
+  - URL=https://www.google.com/
+  - URL=https://www.twitter.com/
+  - URL=https://www.youtube.com/
 
 before_install:
   - docker build -t easypi/shadowsocks-libev .
@@ -11,10 +21,7 @@ before_install:
   - docker ps -a
 
 script:
-  - curl -I -x socks5h://127.0.0.1:1080 https://www.google.com/
-  - curl -I -x socks5h://127.0.0.1:1080 https://www.youtube.com/
-  - curl -I -x socks5h://127.0.0.1:1080 https://www.twitter.com/
-  - curl -I -x socks5h://127.0.0.1:1080 https://www.facebook.com/
+  - curl -I -x socks5h://127.0.0.1:1080 $URL
 
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
