@@ -19,7 +19,7 @@ and low-end boxes.
 It is a port of [Shadowsocks][2] created by [@clowwindy][3], which is maintained by
 [@madeye][4] and [@linusyang][5].
 
-Current version: [2.4.7][6]
+Current version: [![release](https://img.shields.io/github/release/shadowsocks/shadowsocks-libev.svg)][6]
 
 ## How to use these images
 
@@ -56,7 +56,7 @@ Feel free to send me pull requests. Thank you!
 [3]: https://github.com/clowwindy
 [4]: https://github.com/madeye
 [5]: https://github.com/linusyang
-[6]: https://github.com/shadowsocks/shadowsocks-libev/releases/tag/v2.4.7
+[6]: https://github.com/shadowsocks/shadowsocks-libev/releases/latest
 [7]: https://github.com/EasyPi/docker-shadowsocks-libev/raw/master/docker-compose.yml
 [8]: https://duckduckgo.com/?q=password+12&t=ffsb&ia=answer
 [9]: https://github.com/shadowsocks/shadowsocks-libev#license
