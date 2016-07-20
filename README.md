@@ -42,6 +42,21 @@ Current version: [![release](https://img.shields.io/github/release/shadowsocks/s
 
 - Set socks5 proxy in your favorite web browser.
 
+## Deploy without docker
+
+```bash
+# download package
+wget https://github.com/EasyPi/docker-shadowsocks-libev/releases/download/package/shadowsocks-libev_2.4.8-1_amd64.deb
+# install package
+dpkg -i shadowsocks-libev_2.4.8-1_amd64.deb
+# fix broken
+apt-get -f install -y
+# edit config
+vi /etc/shadowsocks-libev/config.json
+# restart service
+systemctl restart shadowsocks-libev
+```
+
 ## License
 
 View [license information][9] for the software contained in this image.

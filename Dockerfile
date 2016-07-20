@@ -5,10 +5,10 @@
 FROM alpine
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 2.4.7
+ENV SS_VER 2.4.8
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
-ENV SS_DEP autoconf build-base curl libtool linux-headers openssl-dev
+ENV SS_DEP asciidoc autoconf build-base curl libtool linux-headers openssl-dev xmlto
 
 RUN set -ex \
     && apk add --no-cache $SS_DEP \

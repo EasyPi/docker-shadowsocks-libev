@@ -1,0 +1,29 @@
+#
+# Dockerfile for shadowsocks-libev
+#
+
+FROM debian:jessie
+MAINTAINER EasyPi Software Foundation
+
+ENV SS_VER 2.4.8
+ENV SS_DIR shadowsocks-libev-${SS_VER}
+ENV SS_DEB shadowsocks-libev_${SS_VER}-1_amd64.deb
+ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VER}.tar.gz
+ENV SS_DEP asciidoc autoconf build-essential debhelper dh-systemd gawk init-system-helpers libssl-dev libtool pkg-config xmlto
+
+RUN set -xe \
+    && apt-get update \
+    && apt-get install -y apg ${SS_DEP} \
+    && curl -sSL ${SS_URL} | tar xz \
+    && cd ${SS_DIR} \
+    && dpkg-buildpackage -b -us -uc -i \
+    && cd .. \
+    && rm -rf ${SS_DIR} \
+    && dpkg -i ${SS_DEB} \
+    && apt-get remove -y ${SS_DEP} \
+    && rm -rf /var/lib/apt/lists/*
+
+EXPOSE 8388
+
+ENTRYPOINT ["/usr/bin/ss-server"]
+CMD ["-c", "/etc/shadowsocks-libev/config.json", "-u"]

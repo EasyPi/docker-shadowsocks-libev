@@ -9,7 +9,7 @@ server:
 
 client:
   image: easypi/shadowsocks-libev
-  command: >
+  command:
     ss-local -s 1.2.3.4
              -p 8388
              -m aes-256-cfb
