@@ -23,7 +23,7 @@ RUN set -xe \
     && apt-get remove -y ${SS_DEP} \
     && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 8388
+EXPOSE 8388/tcp 8388/udp
 
 ENTRYPOINT ["/usr/bin/ss-server"]
 CMD ["-c", "/etc/shadowsocks-libev/config.json", "-u"]
