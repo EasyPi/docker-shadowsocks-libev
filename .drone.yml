@@ -1,7 +1,5 @@
 publish:
   docker:
-    environment:
-      - DOCKER_LAUNCH_DEBUG=true
     username: $$DOCKER_USER
     password: $$DOCKER_PASS
     email: $$DOCKER_EMAIL

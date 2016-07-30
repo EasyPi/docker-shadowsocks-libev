@@ -22,19 +22,19 @@ RUN set -ex \
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
-ENV PASSWORD=
 ENV METHOD      aes-256-cfb
-ENV TIMEOUT     300
+ENV PASSWORD=
+ENV TIMEOUT     60
 ENV DNS_ADDR    8.8.8.8
 
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
 
-CMD ss-server -s $SERVER_ADDR \
-              -p $SERVER_PORT \
-              -k ${PASSWORD:-$(hostname)} \
-              -m $METHOD \
-              -t $TIMEOUT \
-              --fast-open \
-              -d $DNS_ADDR \
-              -u
+CMD ss-server -s "$SERVER_ADDR" \
+              -p "$SERVER_PORT" \
+              -m "$METHOD"      \
+              -k "$PASSWORD"    \
+              -t "$TIMEOUT"     \
+              -d "$DNS_ADDR"    \
+              -u                \
+              --fast-open
