@@ -21,7 +21,7 @@ before_install:
   - docker build -t easypi/shadowsocks-libev:$SS_VER .
   - docker run -d -p 127.0.0.1:8388:8388 -e PASSWORD=helloworld --name server easypi/shadowsocks-libev:$SS_VER
   - docker run -d -p 127.0.0.1:1080:1080 --link server:server --name client easypi/shadowsocks-libev:$SS_VER
-    ss-local -s server -p 8388 -m aes-256-cfb -k helloworld -b 0.0.0.0 -l 1080 -t 300 --fast-open
+    ss-local -s server -p 8388 -m aes-256-cfb -k helloworld -b 0.0.0.0 -l 1080 -t 60 -A --fast-open
   - docker ps -a
 
 before_script:

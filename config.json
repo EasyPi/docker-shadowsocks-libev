@@ -4,5 +4,6 @@
   "local_port": 1080,
   "password": "5ouMnqPyzseL",
   "timeout": 60,
-  "method": "aes-256-cfb"
+  "method": "aes-256-cfb",
+  "auth": true
 }

@@ -57,6 +57,8 @@ vi /etc/shadowsocks-libev/config.json
 systemctl restart shadowsocks-libev
 ```
 
+> Config file format: [config.json](https://shadowsocks.org/en/config/quick-guide.html)
+
 ## License
 
 View [license information][9] for the software contained in this image.
