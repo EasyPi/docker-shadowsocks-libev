@@ -46,9 +46,9 @@ Current version: [![release](https://img.shields.io/github/release/shadowsocks/s
 
 ```bash
 # download package
-wget https://github.com/EasyPi/docker-shadowsocks-libev/releases/download/v2.4.8/shadowsocks-libev_2.4.8-1_amd64.deb
+wget https://github.com/EasyPi/docker-shadowsocks-libev/releases/download/v2.5.0/shadowsocks-libev_2.5.0-1_amd64.deb
 # install package
-dpkg -i shadowsocks-libev_2.4.8-1_amd64.deb
+dpkg -i shadowsocks-libev_2.5.0-1_amd64.deb
 # fix broken
 apt-get -f install -y
 # edit config
