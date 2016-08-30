@@ -25,8 +25,7 @@ before_install:
   - docker ps -a
 
 before_script:
-  - mv Dockerfile.debian Dockerfile
-  - docker build -t easypi/shadowsocks-libev:debian .
+  - docker build -t easypi/shadowsocks-libev:debian -f Dockerfile.debian .
   - docker run --rm -v $PWD:/data --entrypoint cp easypi/shadowsocks-libev:debian $SS_DEB /data
   - sudo chmod 666 $SS_DEB
 
@@ -36,7 +35,7 @@ script:
 after_success:
   if [[ $TRAVIS_TAG && $URL == *youtube* ]];
   then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker tag easypi/shadowsocks-libev:$SS_VER easypi/shadowsocks-libev:latest;
     docker push easypi/shadowsocks-libev:$SS_VER;
     docker push easypi/shadowsocks-libev:latest;
