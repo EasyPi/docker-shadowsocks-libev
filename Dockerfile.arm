@@ -5,20 +5,27 @@
 FROM easypi/alpine-arm
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 2.5.0
+ENV SS_VER 2.5.1
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
-ENV SS_DEP autoconf build-base curl libtool linux-headers openssl-dev
 
 RUN set -ex \
-    && apk add --no-cache $SS_DEP \
+    && apk add --no-cache pcre \
+    && apk add --no-cache \
+               --virtual TMP autoconf \
+                             build-base \
+                             curl \
+                             libtool \
+                             linux-headers \
+                             openssl-dev \
+                             pcre-dev \
     && curl -sSL $SS_URL | tar xz \
     && cd $SS_DIR \
         && ./configure --disable-documentation \
         && make install \
         && cd .. \
         && rm -rf $SS_DIR \
-    && apk del --purge $SS_DEP
+    && apk del --virtual TMP
 
 ENV SERVER_ADDR=
 ENV SERVER_PORT 8388
