@@ -7,7 +7,7 @@ MAINTAINER EasyPi Software Foundation
 
 ENV SS_VER 2.5.2
 ENV SS_DIR shadowsocks-libev-${SS_VER}
-ENV SS_DEB shadowsocks-libev_${SS_VER}-1_amd64.deb
+ENV SS_DEB shadowsocks-libev_${SS_VER}-1ubuntu1_amd64.deb
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VER}.tar.gz
 ENV SS_DEP asciidoc autoconf build-essential debhelper dh-systemd gawk init-system-helpers libpcre3-dev libssl-dev libtool pkg-config xmlto
 
