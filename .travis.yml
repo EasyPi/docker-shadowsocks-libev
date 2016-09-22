@@ -10,7 +10,7 @@ services:
 env:
   global:
     - SS_VER=2.5.3
-    - SS_DEB=shadowsocks-libev_${SS_VER}-1ubuntu1_amd64.deb
+    - SS_DEB=shadowsocks-libev_${SS_VER}-1_amd64.deb
   matrix:
     - URL=https://www.facebook.com/
     - URL=https://www.google.com/
