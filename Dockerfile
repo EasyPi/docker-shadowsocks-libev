@@ -45,4 +45,4 @@ CMD ss-server -s "$SERVER_ADDR" \
               -d "$DNS_ADDR"    \
               -u                \
               -A                \
-              --fast-open
+              --fast-open $OPTIONS

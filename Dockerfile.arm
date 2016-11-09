@@ -45,4 +45,4 @@ CMD ss-local -s "$SERVER_ADDR" \
              -l "$LOCAL_PORT"  \
              -t "$TIMEOUT"     \
              -A                \
-             --fast-open
+             --fast-open $OPTIONS
