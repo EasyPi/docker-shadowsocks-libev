@@ -25,7 +25,7 @@ RUN set -ex \
         && make install \
         && cd .. \
         && rm -rf $SS_DIR \
-    && apk del --virtual TMP
+    && apk del TMP
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
