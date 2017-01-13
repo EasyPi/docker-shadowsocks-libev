@@ -10,7 +10,7 @@ ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar
 ENV SS_DIR shadowsocks-libev-$SS_VER
 
 RUN set -ex \
-    && apk add --no-cache pcre \
+    && apk add --no-cache libcrypto1.0 pcre \
     && apk add --no-cache \
                --virtual TMP autoconf \
                              build-base \
