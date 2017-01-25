@@ -9,18 +9,61 @@ ENV SS_VER 2.6.3
 ENV SS_DIR shadowsocks-libev-${SS_VER}
 ENV SS_DEB shadowsocks-libev_${SS_VER}-1_armhf.deb
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VER}.tar.gz
-ENV SS_DEP asciidoc autoconf build-essential curl debhelper dh-systemd gawk init-system-helpers libpcre3-dev libssl-dev libtool pkg-config xmlto
 
 RUN set -xe \
     && apt-get update \
-    && apt-get install -y apg ${SS_DEP} \
+    && apt-get install -y apg \
+                          asciidoc \
+                          autoconf \
+                          build-essential \
+                          curl \
+                          debhelper \
+                          dh-systemd \
+                          gawk \
+                          gettext \
+                          init-system-helpers \
+                          libev4 \
+                          libev-dev \
+                          libpcre3 \
+                          libpcre3-dev \
+                          libsodium13 \
+                          libsodium-dev \
+                          libssl1.0.0 \
+                          libssl-dev \
+                          libtool \
+                          libudns0 \
+                          libudns-dev \
+                          pkg-config \
+                          xmlto \
+                          zlib1g \
+                          zlib1g-dev \
     && curl -sSL ${SS_URL} | tar xz \
     && cd ${SS_DIR} \
-    && dpkg-buildpackage -b -us -uc -i \
-    && cd .. \
-    && rm -rf ${SS_DIR} \
+        && curl -sSL https://github.com/shadowsocks/shadowsocks-libev/raw/master/src/encrypt.c > src/encrypt.c \
+        && curl -sSL https://github.com/shadowsocks/ipset/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libipset \
+        && curl -sSL https://github.com/shadowsocks/libcork/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libcork \
+        && ./autogen.sh \
+        && dpkg-buildpackage -b -us -uc -i \
+        && cd .. \
+        && rm -rf ${SS_DIR} \
     && dpkg -i ${SS_DEB} \
-    && apt-get remove -y ${SS_DEP} \
+    && apt-get remove -y asciidoc \
+                         autoconf \
+                         build-essential \
+                         debhelper \
+                         dh-systemd \
+                         gawk \
+                         gettext \
+                         init-system-helpers \
+                         libev-dev \
+                         libpcre3-dev \
+                         libsodium-dev \
+                         libssl-dev \
+                         libtool \
+                         libudns-dev \
+                         pkg-config \
+                         xmlto \
+                         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8388/tcp 8388/udp
