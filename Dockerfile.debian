@@ -2,7 +2,7 @@
 # Dockerfile for shadowsocks-libev
 #
 
-FROM debian:jessie-backports
+FROM debian:jessie
 MAINTAINER EasyPi Software Foundation
 
 ENV SS_VER 2.6.3
