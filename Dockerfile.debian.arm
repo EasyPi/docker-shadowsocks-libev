@@ -1,5 +1,5 @@
 #
-# Dockerfile for shadowsocks-libev-arm
+# Dockerfile for shadowsocks-libev-arm:debian
 #
 
 FROM resin/rpi-raspbian
@@ -26,8 +26,6 @@ RUN set -xe \
                           libev-dev \
                           libpcre3 \
                           libpcre3-dev \
-                          libsodium13 \
-                          libsodium-dev \
                           libssl1.0.0 \
                           libssl-dev \
                           libtool \
@@ -39,6 +37,16 @@ RUN set -xe \
                           zlib1g-dev \
     && curl -sSL ${SS_URL} | tar xz \
     && cd ${SS_DIR} \
+        && curl -sSL https://download.libsodium.org/libsodium/releases/libsodium-1.0.11.tar.gz | tar xz \
+        && cd libsodium-1.0.11 \
+        && ./configure --prefix=/usr \
+        && make install \
+        && cd .. \
+        && curl -sSL https://tls.mbed.org/download/mbedtls-2.4.0-gpl.tgz | tar xz \
+        && cd mbedtls-2.4.0 \
+        && make SHARED=1 CFLAGS=-fPIC \
+        && make install \
+        && cd .. \
         && curl -sSL https://github.com/shadowsocks/ipset/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libipset \
         && curl -sSL https://github.com/shadowsocks/libcork/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libcork \
         && ./autogen.sh \
@@ -56,7 +64,6 @@ RUN set -xe \
                          init-system-helpers \
                          libev-dev \
                          libpcre3-dev \
-                         libsodium-dev \
                          libssl-dev \
                          libtool \
                          libudns-dev \
