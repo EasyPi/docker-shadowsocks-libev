@@ -9,7 +9,7 @@ services:
 
 env:
   global:
-    - SS_VER=2.6.3
+    - SS_VER=3.0.0
     - SS_DEB=shadowsocks-libev_${SS_VER}-1_amd64.deb
   matrix:
     - URL=https://www.facebook.com/
@@ -21,13 +21,13 @@ before_install:
   - docker build -t easypi/shadowsocks-libev:$SS_VER .
   - docker run -d -p 127.0.0.1:8388:8388 -e PASSWORD=helloworld --name server easypi/shadowsocks-libev:$SS_VER
   - docker run -d -p 127.0.0.1:1080:1080 --link server:server --name client easypi/shadowsocks-libev:$SS_VER
-    ss-local -s server -p 8388 -m aes-256-cfb -k helloworld -b 0.0.0.0 -l 1080 -t 60 -A --fast-open
+    ss-local -s server -p 8388 -m aes-256-cfb -k helloworld -b 0.0.0.0 -l 1080 -t 60 --fast-open
   - docker ps -a
 
-#before_script:
-#  - docker build -t easypi/shadowsocks-libev:debian -f Dockerfile.debian .
-#  - docker run --rm -v $PWD:/data --entrypoint cp easypi/shadowsocks-libev:debian $SS_DEB /data
-#  - sudo chmod 666 $SS_DEB
+before_script:
+  - docker build -t easypi/shadowsocks-libev:debian -f Dockerfile.debian .
+  - docker run --rm -v $PWD:/data --entrypoint cp easypi/shadowsocks-libev:debian $SS_DEB /data
+  - sudo chmod 666 $SS_DEB
 
 script:
   - curl -I -x socks5h://127.0.0.1:1080 $URL
@@ -41,12 +41,12 @@ after_success:
     docker push easypi/shadowsocks-libev:latest;
   fi
 
-#deploy:
-#  provider: releases
-#  api_key:
-#    secure: "W3zCVwHoUbwH7xR4jIPhv/sCnxvAH9Ta6ZtLHSN8tNss6vifbP4uIMc+wPhyN3KPeCV7BpvE95n/zfWvwfd+BrSwNPtP2yu/jCFEu0c1LBWBVZw02RK7osTeLfUvDmSLp/47aOPkoxppXziVjXGSgmtioD+HEizfTQPd5QOVsY2fnXcYiFmC5meI9AcNx6nIPPS307dEuSZOfjVCecl6SFiTo242/XAV1Ix5dGzAKC2B76Wqa+rnfWf6q0ScbmeBRFHusEScs1lF0dIbp7FjDgRjMxHVc4cPGzT2WK+GaYdQyIeXbJ2AQfXWXLKWoXU8Hq07gDK2DjAp/thqXFMduPfAeaoWb/9sVpWKxdJJokJ8b3BWd9PkP5VKWkpeYM2HpQ70+N9Om7ntHEZVkweHbyyykkNUT7mNLF3XjRdvdYm6H7GnROHQKSniQY8pAeorHYc8AW6N6iY7E3HBzD388rOGTDYDbq8HbOEFMGEM9KGLw89rn6+h6znbixi93vuVS+brsu08BRtBUCXMJ3fRDcS1PoHVGIyMPVJLhTe3+E257s9Xfa/8xq5zS/yvlxofe7zovF8AdvcnevkR0X/ibmGqfCe9h0IXSdeM7DyzwkzPKA+6SVKTbyYeb5NyTNoEKnwnWYPz4HGj+WrpysUrTvrw5PejHLdgPy7e8/n+Ke8="
-#  file: $SS_DEB
-#  skip_cleanup: true
-#  on:
-#    tags: true
-#    condition: $URL == *youtube*
+deploy:
+  provider: releases
+  api_key:
+    secure: "W3zCVwHoUbwH7xR4jIPhv/sCnxvAH9Ta6ZtLHSN8tNss6vifbP4uIMc+wPhyN3KPeCV7BpvE95n/zfWvwfd+BrSwNPtP2yu/jCFEu0c1LBWBVZw02RK7osTeLfUvDmSLp/47aOPkoxppXziVjXGSgmtioD+HEizfTQPd5QOVsY2fnXcYiFmC5meI9AcNx6nIPPS307dEuSZOfjVCecl6SFiTo242/XAV1Ix5dGzAKC2B76Wqa+rnfWf6q0ScbmeBRFHusEScs1lF0dIbp7FjDgRjMxHVc4cPGzT2WK+GaYdQyIeXbJ2AQfXWXLKWoXU8Hq07gDK2DjAp/thqXFMduPfAeaoWb/9sVpWKxdJJokJ8b3BWd9PkP5VKWkpeYM2HpQ70+N9Om7ntHEZVkweHbyyykkNUT7mNLF3XjRdvdYm6H7GnROHQKSniQY8pAeorHYc8AW6N6iY7E3HBzD388rOGTDYDbq8HbOEFMGEM9KGLw89rn6+h6znbixi93vuVS+brsu08BRtBUCXMJ3fRDcS1PoHVGIyMPVJLhTe3+E257s9Xfa/8xq5zS/yvlxofe7zovF8AdvcnevkR0X/ibmGqfCe9h0IXSdeM7DyzwkzPKA+6SVKTbyYeb5NyTNoEKnwnWYPz4HGj+WrpysUrTvrw5PejHLdgPy7e8/n+Ke8="
+  file: $SS_DEB
+  skip_cleanup: true
+  on:
+    tags: true
+    condition: $URL == *youtube*
