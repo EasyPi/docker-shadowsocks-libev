@@ -5,19 +5,20 @@
 FROM debian:jessie
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 3.0.3
+ENV SS_VER 3.0.4
 ENV SS_DIR shadowsocks-libev-${SS_VER}
 ENV SS_DEB shadowsocks-libev_${SS_VER}-1_amd64.deb
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VER}.tar.gz
 
 RUN set -xe \
+    && echo 'deb http://ftp.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list \
     && apt-get update \
+    && apt-get install -y -t jessie-backports debhelper \
     && apt-get install -y apg \
                           asciidoc \
                           autoconf \
                           build-essential \
                           curl \
-                          debhelper \
                           dh-systemd \
                           gawk \
                           gettext \
@@ -58,7 +59,6 @@ RUN set -xe \
     && apt-get remove -y asciidoc \
                          autoconf \
                          build-essential \
-                         debhelper \
                          dh-systemd \
                          gawk \
                          gettext \
@@ -71,6 +71,7 @@ RUN set -xe \
                          pkg-config \
                          xmlto \
                          zlib1g-dev \
+    && apt-get remove -y -t jessie-backports debhelper \
     && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8388/tcp 8388/udp
