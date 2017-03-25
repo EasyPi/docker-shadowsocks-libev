@@ -18,6 +18,8 @@ env:
     - URL=https://www.youtube.com/
 
 before_install:
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker build -t easypi/shadowsocks-libev-arm:$SS_VER -f Dockerfile.arm .
   - docker build -t easypi/shadowsocks-libev:$SS_VER .
   - docker run -d -p 127.0.0.1:8388:8388 -e PASSWORD=helloworld --name server easypi/shadowsocks-libev:$SS_VER
   - docker run -d -p 127.0.0.1:1080:1080 --link server:server --name client easypi/shadowsocks-libev:$SS_VER
@@ -36,6 +38,9 @@ after_success:
   if [[ $TRAVIS_TAG && $URL == *youtube* ]];
   then
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker tag easypi/shadowsocks-libev-arm:$SS_VER easypi/shadowsocks-libev-arm:latest;
+    docker push easypi/shadowsocks-libev-arm:$SS_VER;
+    docker push easypi/shadowsocks-libev-arm:latest;
     docker tag easypi/shadowsocks-libev:$SS_VER easypi/shadowsocks-libev:latest;
     docker push easypi/shadowsocks-libev:$SS_VER;
     docker push easypi/shadowsocks-libev:latest;
