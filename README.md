@@ -44,17 +44,13 @@ Current version: [![release](https://img.shields.io/github/release/shadowsocks/s
 
 ## Deploy without docker
 
+You can update your system with unsupported packages from this untrusted PPA by
+adding [ppa:max-c-lv/shadowsocks-libev][13] to your system's Software Sources.
+
 ```bash
-# download package
-wget https://github.com/EasyPi/docker-shadowsocks-libev/releases/download/v2.5.6/shadowsocks-libev_2.5.6-1_amd64.deb
-# install package
-dpkg -i shadowsocks-libev_2.5.6-1_amd64.deb
-# fix broken
-apt-get -f install -y
-# edit config
-vi /etc/shadowsocks-libev/config.json
-# restart service
-systemctl restart shadowsocks-libev
+sudo add-apt-repository ppa:max-c-lv/shadowsocks-libev
+sudo apt-get update
+sudo apt-get install shadowsocks-libev
 ```
 
 > Config file format: [config.json](https://shadowsocks.org/en/config/quick-guide.html)
@@ -80,3 +76,4 @@ Feel free to send me pull requests. Thank you!
 [10]: https://github.com/EasyPi/docker-shadowsocks-libev/issues
 [11]: https://hub.docker.com/r/easypi/shadowsocks-libev/
 [12]: https://hub.docker.com/r/easypi/shadowsocks-libev-arm/
+[13]: https://launchpad.net/~max-c-lv/+archive/ubuntu/shadowsocks-libev
