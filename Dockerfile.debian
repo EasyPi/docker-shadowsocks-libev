@@ -2,10 +2,10 @@
 # Dockerfile for shadowsocks-libev:debian
 #
 
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 3.0.6
+ENV SS_VER 3.0.7
 ENV SS_DIR shadowsocks-libev-${SS_VER}
 ENV SS_DEB shadowsocks-libev_${SS_VER}-1_amd64.deb
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VER}.tar.gz
