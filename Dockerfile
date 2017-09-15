@@ -5,21 +5,22 @@
 FROM alpine
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 3.0.8
+ENV SS_VER 3.1.0
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
 
 RUN set -ex \
-    && apk add --no-cache libcrypto1.0 \
+    && apk add --no-cache c-ares \
+                          libcrypto1.0 \
                           libev \
                           libsodium \
                           mbedtls \
                           pcre \
-                          udns \
     && apk add --no-cache \
                --virtual TMP autoconf \
                              automake \
                              build-base \
+                             c-ares-dev \
                              curl \
                              gettext-dev \
                              libev-dev \
@@ -30,7 +31,6 @@ RUN set -ex \
                              openssl-dev \
                              pcre-dev \
                              tar \
-                             udns-dev \
     && curl -sSL $SS_URL | tar xz \
     && cd $SS_DIR \
         && curl -sSL https://github.com/shadowsocks/ipset/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libipset \
