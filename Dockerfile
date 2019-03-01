@@ -2,7 +2,7 @@
 # Dockerfile for shadowsocks-libev
 #
 
-FROM alpine
+FROM alpine:3.8
 MAINTAINER EasyPi Software Foundation
 
 ENV SS_VER 3.2.4
