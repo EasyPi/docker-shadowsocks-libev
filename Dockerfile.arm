@@ -5,7 +5,7 @@
 FROM easypi/alpine-arm:build
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER 3.2.3
+ENV SS_VER 3.2.4
 ENV SS_URL https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ENV SS_DIR shadowsocks-libev-$SS_VER
 
