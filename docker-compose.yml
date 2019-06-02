@@ -1,34 +1,45 @@
-server:
-  image: easypi/shadowsocks-libev
-  ports:
-    - "8388:8388/tcp"
-    - "8388:8388/udp"
-  environment:
-    - METHOD=aes-256-cfb
-    - PASSWORD=5ouMnqPyzseL
-  restart: always
+version: "3.7"
+services:
+  server:
+    image: easypi/shadowsocks-libev
+    ports:
+      - "8388:8388/tcp"
+      - "8388:8388/udp"
+    environment:
+      - METHOD=aes-256-cfb
+      - PASSWORD=5ouMnqPyzseL
+    restart: always
 
-client:
-  image: easypi/shadowsocks-libev
-  command:
-    ss-local -s 1.2.3.4
-             -p 8388
-             -m aes-256-cfb
-             -k 5ouMnqPyzseL
-             -b 0.0.0.0
-             -l 1080
-             -t 60
-             --fast-open
-  ports:
-    - "1080:1080"
-  restart: always
+  client:
+    image: easypi/shadowsocks-libev
+    command:
+      ss-local -s 1.2.3.4
+               -p 8388
+               -m aes-256-cfb
+               -k 5ouMnqPyzseL
+               -b 0.0.0.0
+               -l 1080
+               -t 60
+               --fast-open
+    ports:
+      - "1080:1080"
+    restart: always
 
-client-arm:
-  image: easypi/shadowsocks-libev-arm
-  ports:
-    - "1080:1080"
-  environment:
-    - SERVER_ADDR=1.2.3.4
-    - METHOD=aes-256-cfb
-    - PASSWORD=5ouMnqPyzseL
-  restart: always
+  client-arm:
+    image: easypi/shadowsocks-libev-arm
+    ports:
+      - "1080:1080"
+    environment:
+      - SERVER_ADDR=1.2.3.4
+      - METHOD=aes-256-cfb
+      - PASSWORD=5ouMnqPyzseL
+    restart: always
+
+  http-proxy:
+    image: siji/polipo
+    command:
+      socksParentProxy=client:1080
+      socksProxyType=socks5
+      proxyAddress=0.0.0.0 
+    ports:
+      - "8123:8123"
