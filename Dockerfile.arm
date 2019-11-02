@@ -11,7 +11,7 @@ ENV SS_DIR shadowsocks-libev-$SS_VER
 
 RUN set -ex \
     && apk add --no-cache c-ares \
-                          libcrypto1.0 \
+                          libcrypto1.1 \
                           libev \
                           libsodium \
                           mbedtls \
