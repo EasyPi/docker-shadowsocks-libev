@@ -5,7 +5,7 @@ services:
 
 env:
   global:
-    - SS_VER=3.3.4
+    - SS_VER=3.3.5
   matrix:
     - URL=https://www.facebook.com/
     - URL=https://www.google.com/
