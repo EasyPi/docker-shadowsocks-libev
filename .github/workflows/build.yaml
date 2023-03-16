@@ -9,6 +9,7 @@ on:
       - Dockerfile
 
 env:
+  PLATFORMS: 'linux/amd64,linux/arm64,linux/arm/v7'
   IMAGE_NAME: 'vimagick/shadowsocks-libev'
   SS_VERSION: '3.3.5'
 
@@ -37,14 +38,14 @@ jobs:
 
       - uses: docker/build-push-action@v2
         with:
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: ${{ env.PLATFORMS }}
           build-args: |
             SS_VER=${{ env.SS_VERSION }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
             ${{ env.IMAGE_NAME }}:latest
-            ghcr.io/${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
-            ghcr.io/${{ env.IMAGE_NAME }}:latest
+          # ghcr.io/${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
+          # ghcr.io/${{ env.IMAGE_NAME }}:latest
           push: true
 
       - if: ${{ always() }}
