@@ -3,12 +3,8 @@ docker-shadowsocks-libev
 
 ![build](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build.yaml/badge.svg)
 [![release](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
-[![stars](https://img.shields.io/docker/stars/easypi/shadowsocks-libev.svg)](https://hub.docker.com/r/easypi/shadowsocks-libev)
-[![pulls](https://img.shields.io/docker/pulls/easypi/shadowsocks-libev.svg)](https://hub.docker.com/r/easypi/shadowsocks-libev)
 
-name                               | size
----------------------------------- | ------
-[easypi/shadowsocks-libev][11]     | 5.5 MB
+[![](http://dockeri.co/image/vimagick/shadowsocks-libev)][11]
 
 ## What is shadowsocks-libev
 
@@ -41,7 +37,7 @@ Current version: [![release](https://img.shields.io/github/release/shadowsocks/s
 ## Deploy without docker
 
 You can update your system with unsupported packages from this untrusted PPA by
-adding [ppa:liamwong/shadowsocks-libev][13] to your system's Software Sources.
+adding [ppa:liamwong/shadowsocks-libev][12] to your system's Software Sources.
 
 ```bash
 sudo add-apt-repository ppa:liamwong/shadowsocks-libev
@@ -70,6 +66,5 @@ Feel free to send me pull requests. Thank you!
 [8]: https://duckduckgo.com/?q=password+12&t=ffsb&ia=answer
 [9]: https://github.com/shadowsocks/shadowsocks-libev#license
 [10]: https://github.com/EasyPi/docker-shadowsocks-libev/issues
-[11]: https://hub.docker.com/r/easypi/shadowsocks-libev/
-[12]: https://hub.docker.com/r/easypi/shadowsocks-libev-arm/
-[13]: https://launchpad.net/~liamwong/+archive/ubuntu/shadowsocks-libev
+[11]: https://hub.docker.com/r/vimagick/shadowsocks-libev/
+[12]: https://launchpad.net/~liamwong/+archive/ubuntu/shadowsocks-libev
