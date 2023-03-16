@@ -1,7 +1,7 @@
 docker-shadowsocks-libev
 ========================
 
-![build](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build.yaml/badge.svg)
+[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build.yaml/badge.svg)](https://github.com/EasyPi/docker-shadowsocks-libev)
 [![release](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
 
 [![](http://dockeri.co/image/vimagick/shadowsocks-libev)][11]
@@ -45,7 +45,7 @@ sudo apt-get update
 sudo apt-get install shadowsocks-libev
 ```
 
-> Config file format: [config.json](https://shadowsocks.org/en/config/quick-guide.html)
+> Config file format: [config.json](https://shadowsocks.org/guide/configs.html)
 
 ## License
 
