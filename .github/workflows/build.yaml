@@ -1,11 +1,16 @@
 name: Docker Build Images
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
     paths:
       - Dockerfile
+
+env:
+  IMAGE_NAME: 'vimagick/shadowsocks-libev'
+  SS_VERSION: '3.3.5'
 
 jobs:
   release:
@@ -25,12 +30,43 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
-          tags: easypi/shadowsocks-libev:latest
+          build-args: |
+            SS_VER=${{ env.SS_VERSION }}
+          tags: |
+            ${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
+            ${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
+            ghcr.io/${{ env.IMAGE_NAME }}:latest
           push: true
 
-      - uses: slackapi/slack-github-action@v1.16.0
+      - if: ${{ always() }}
+        uses: slackapi/slack-github-action@v1.16.0
         with:
           channel-id: github
-          slack-message: 'docker build ok'
+          payload: |
+            {
+              "attachments": [
+                {
+                  "color": "${{ job.status == 'success' && 'good' || 'danger' }}",
+                  "title": "${{ github.repository }}",
+                  "title_link": "https://github.com/${{ github.repository }}",
+                  "text": "docker build image result",
+                  "fields": [
+                    {
+                      "title": "Image",
+                      "value": "<https://hub.docker.com/r/${{ env.IMAGE_NAME }}|${{ env.IMAGE_NAME }}>",
+                      "short": true
+                    },
+                    {
+                      "title": "Status",
+                      "value": "${{ job.status }}",
+                      "short": true
+                    }
+                  ],
+                  "footer": "Github Actions",
+                  "footer_icon": "https://github.githubassets.com/favicon.ico"
+                }
+              ]
+            }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

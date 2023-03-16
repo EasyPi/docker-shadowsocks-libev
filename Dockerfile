@@ -5,9 +5,9 @@
 FROM alpine:3
 MAINTAINER EasyPi Software Foundation
 
-ENV SS_VER=3.3.5
-ENV SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
-ENV SS_DIR=shadowsocks-libev-$SS_VER
+ARG SS_VERSION=3.3.5
+ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VERSION}.tar.gz
+ARG SS_DIR=shadowsocks-libev-${SS_VERSION}
 
 RUN set -ex \
     && apk add --no-cache c-ares \
@@ -43,12 +43,12 @@ RUN set -ex \
         && rm -rf $SS_DIR \
     && apk del TMP
 
-ENV SERVER_ADDR 0.0.0.0
-ENV SERVER_PORT 8388
-ENV METHOD      aes-256-cfb
+ENV SERVER_ADDR=0.0.0.0
+ENV SERVER_PORT=8388
+ENV METHOD=aes-256-cfb
 ENV PASSWORD=
-ENV TIMEOUT     60
-ENV DNS_ADDR    8.8.8.8
+ENV TIMEOUT=60
+ENV DNS_ADDR=8.8.8.8
 
 EXPOSE $SERVER_PORT/tcp
 EXPOSE $SERVER_PORT/udp
