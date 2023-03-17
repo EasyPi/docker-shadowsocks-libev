@@ -40,7 +40,7 @@ jobs:
         with:
           platforms: ${{ env.PLATFORMS }}
           build-args: |
-            SS_VER=${{ env.SS_VERSION }}
+            SS_VERSION=${{ env.SS_VERSION }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
             ${{ env.IMAGE_NAME }}:latest
