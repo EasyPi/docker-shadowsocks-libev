@@ -11,7 +11,7 @@ on:
 env:
   PLATFORMS: 'linux/amd64,linux/arm64,linux/arm/v7'
   IMAGE_NAME: 'vimagick/shadowsocks-rust'
-  SS_RUST_VERSION: '1.15.3'
+  SS_RUST_VERSION: '1.15.4'
 
 jobs:
   release:
