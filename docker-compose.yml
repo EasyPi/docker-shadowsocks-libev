@@ -3,7 +3,7 @@ version: "3.8"
 services:
 
   server:
-    image: vimagick/shadowsocks-libev
+    image: easypi/shadowsocks-libev
     ports:
       - "8388:8388/tcp"
       - "8388:8388/udp"
@@ -13,7 +13,7 @@ services:
     restart: unless-stopped
 
   client:
-    image: vimagick/shadowsocks-libev
+    image: easypi/shadowsocks-libev
     command:
       ss-local -s 1.2.3.4
                -p 8388

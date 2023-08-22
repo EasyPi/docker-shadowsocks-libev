@@ -4,7 +4,7 @@ docker-shadowsocks-libev
 [![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build.yaml/badge.svg)](https://github.com/EasyPi/docker-shadowsocks-libev)
 [![release](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
 
-[![](http://dockeri.co/image/vimagick/shadowsocks-libev)][11]
+[![](http://dockeri.co/image/easypi/shadowsocks-libev)][11]
 
 ## What is shadowsocks-libev
 
@@ -61,4 +61,4 @@ Feel free to send me pull requests. Thank you!
 [8]: https://duckduckgo.com/?q=password+12&t=ffsb&ia=answer
 [9]: https://github.com/shadowsocks/shadowsocks-libev#license
 [10]: https://github.com/EasyPi/docker-shadowsocks-libev/issues
-[11]: https://hub.docker.com/r/vimagick/shadowsocks-libev/
+[11]: https://hub.docker.com/r/easypi/shadowsocks-libev/

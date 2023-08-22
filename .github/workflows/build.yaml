@@ -10,7 +10,7 @@ on:
 
 env:
   PLATFORMS: 'linux/amd64,linux/arm64,linux/arm/v7'
-  IMAGE_NAME: 'vimagick/shadowsocks-libev'
+  IMAGE_NAME: 'easypi/shadowsocks-libev'
   SS_VERSION: '3.3.5'
 
 jobs:
