@@ -6,6 +6,12 @@ docker-shadowsocks-libev
 
 [![](http://dockeri.co/image/easypi/shadowsocks-libev)][11]
 
+> 我们中国人需要管的
+>> ——— Jackie Chan
+
+> 不需要政府造墙，网民也会自发造墙
+>> ——— [clowwindy](https://zh.wikiquote.org/wiki/%E7%A5%9D%E5%8D%9A%E9%9F%AC)
+
 ## What is shadowsocks-libev
 
 [Shadowsocks-libev][1] is a lightweight secured SOCKS5 proxy for embedded devices
