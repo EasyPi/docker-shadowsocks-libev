@@ -41,7 +41,7 @@ jobs:
           context: rust
           platforms: ${{ env.PLATFORMS }}
           build-args: |
-            SS_RUST_VER=${{ env.SS_RUST_VERSION }}
+            SS_RUST_VERSION=${{ env.SS_RUST_VERSION }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.SS_RUST_VERSION }}
             ${{ env.IMAGE_NAME }}:latest
