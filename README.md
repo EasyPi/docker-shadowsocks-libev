@@ -1,7 +1,7 @@
 docker-shadowsocks-libev
 ========================
 
-[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build.yaml/badge.svg)](https://github.com/EasyPi/docker-shadowsocks-libev)
+[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build-libev.yaml/badge.svg)](https://github.com/EasyPi/docker-shadowsocks-libev)
 [![release](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
 
 [![](http://dockeri.co/image/easypi/shadowsocks-libev)][11]
