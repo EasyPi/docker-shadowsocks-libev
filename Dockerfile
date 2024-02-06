@@ -2,7 +2,7 @@
 # Dockerfile for shadowsocks-libev
 #
 
-FROM alpine:3
+FROM alpine:3.19
 MAINTAINER EasyPi Software Foundation
 
 ARG SS_VERSION=3.3.5
@@ -11,7 +11,7 @@ ARG SS_DIR=shadowsocks-libev-${SS_VERSION}
 
 RUN set -ex \
     && apk add --no-cache c-ares \
-                          libcrypto1.1 \
+                          libcrypto3 \
                           libev \
                           libsodium \
                           mbedtls \
