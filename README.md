@@ -5,6 +5,7 @@ docker-shadowsocks-libev
 [![release](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
 
 [![](http://dockeri.co/image/easypi/shadowsocks-libev)][11]
+[![](http://dockeri.co/image/easypi/shadowsocks-rust)][12]
 
 > 我们中国人需要管的
 >> ——— [Jackie Chan](https://zh.wikipedia.org/wiki/%E6%88%90%E9%BE%8D#%E6%94%BF%E6%B2%BB%E7%AB%8B%E5%9C%BA)
@@ -68,3 +69,4 @@ Feel free to send me pull requests. Thank you!
 [9]: https://github.com/shadowsocks/shadowsocks-libev#license
 [10]: https://github.com/EasyPi/docker-shadowsocks-libev/issues
 [11]: https://hub.docker.com/r/easypi/shadowsocks-libev/
+[12]: https://hub.docker.com/r/easypi/shadowsocks-rust/
