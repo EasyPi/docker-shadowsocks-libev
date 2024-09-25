@@ -11,7 +11,7 @@ on:
 env:
   PLATFORMS: 'linux/amd64,linux/arm64,linux/arm/v7'
   IMAGE_NAME: 'easypi/shadowsocks-rust'
-  SS_RUST_VERSION: '1.20.4'
+  SS_RUST_VERSION: '1.21.0'
 
 jobs:
   release:
