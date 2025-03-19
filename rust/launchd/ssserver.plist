@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>ssserver</string>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/local/bin/ssserver</string>
+      <string>--config</string>
+      <string>/usr/local/etc/shadowsocks-rust/config.json</string>
+      <string>--acl</string>
+      <string>/usr/local/etc/shadowsocks-rust/config.acl</string>
+      <string>--dns</string>
+      <string>8.8.8.8</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/dev/null</string>
+    <key>StandardOutPath</key>
+    <string>/usr/local/var/log/ssserver.log</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>LimitLoadToSessionType</key>
+    <array>
+      <string>Aqua</string>
+      <string>Background</string>
+      <string>LoginWindow</string>
+      <string>StandardIO</string>
+      <string>System</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/usr/local/etc/shadowsocks-rust</string>
+  </dict>
+</plist>
