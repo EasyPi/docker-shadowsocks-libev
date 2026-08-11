@@ -2,10 +2,10 @@
 # Dockerfile for shadowsocks-libev
 #
 
-FROM alpine:3.19
+FROM alpine:3.24
 MAINTAINER EasyPi Software Foundation
 
-ARG SS_VERSION=3.3.5
+ARG SS_VERSION=3.3.6
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v${SS_VERSION}.tar.gz
 ARG SS_DIR=shadowsocks-libev-${SS_VERSION}
 
