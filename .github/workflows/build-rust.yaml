@@ -11,7 +11,7 @@ on:
 env:
   PLATFORMS: 'linux/amd64,linux/arm64,linux/arm/v7'
   IMAGE_NAME: 'easypi/shadowsocks-rust'
-  SS_RUST_VERSION: '1.24.0'
+  SS_RUST_VERSION: '1.25.0'
 
 jobs:
   release:
@@ -36,7 +36,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/build-push-action@v5
+      - uses: docker/build-push-action@v6
         with:
           context: rust
           platforms: ${{ env.PLATFORMS }}
@@ -45,12 +45,12 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.SS_RUST_VERSION }}
             ${{ env.IMAGE_NAME }}:latest
-          # ghcr.io/${{ env.IMAGE_NAME }}:${{ env.SS_RUST_VERSION }}
-          # ghcr.io/${{ env.IMAGE_NAME }}:latest
+            ghcr.io/${{ env.IMAGE_NAME }}:${{ env.SS_RUST_VERSION }}
+            ghcr.io/${{ env.IMAGE_NAME }}:latest
           push: true
 
       - if: ${{ always() }}
-        uses: slackapi/slack-github-action@v1.24.0
+        uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: github
           payload: |
@@ -64,7 +64,7 @@ jobs:
                   "fields": [
                     {
                       "title": "Image",
-                      "value": "<https://hub.docker.com/r/${{ env.IMAGE_NAME }}|${{ env.IMAGE_NAME }}:${{ env.SS_RUST_VERSION }}>",
+                      "value": "<https://hub.docker.com/r/${{ env.IMAGE_NAME }}|${{ env.IMAGE_NAME }}>",
                       "short": true
                     },
                     {
