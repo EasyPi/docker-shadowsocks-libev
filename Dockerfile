@@ -21,6 +21,7 @@ RUN set -ex \
                              automake \
                              build-base \
                              c-ares-dev \
+                             cmake \
                              coreutils \
                              curl \
                              gettext-dev \
