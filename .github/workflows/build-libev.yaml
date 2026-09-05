@@ -1,81 +1,27 @@
-name: Docker Build Images (libev version)
+name: Build shadowsocks-libev
 
 on:
   workflow_dispatch:
   push:
     branches:
       - master
-    paths-ignore:
-      - README.md
+    paths:
+      - Dockerfile
 
 env:
-  PLATFORMS: 'linux/amd64,linux/arm64,linux/arm/v7'
-  IMAGE_NAME: 'easypi/shadowsocks-libev'
-  SS_VERSION: '3.3.6'
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: docker/setup-qemu-action@v3
-
-      - uses: docker/setup-buildx-action@v3
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
+      - uses: actions/checkout@v7
+      - name: Docker Build and Notify
+        uses: vimagick/dockerfiles/.github/actions/docker-build-notify@master
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Login to Github Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: docker/build-push-action@v5
-        with:
-          platforms: ${{ env.PLATFORMS }}
-          build-args: |
-            SS_VERSION=${{ env.SS_VERSION }}
-          tags: |
-            ${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
-            ${{ env.IMAGE_NAME }}:latest
-          # ghcr.io/${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}
-          # ghcr.io/${{ env.IMAGE_NAME }}:latest
-          push: true
-
-      - if: ${{ always() }}
-        uses: slackapi/slack-github-action@v1.16.0
-        with:
-          channel-id: github
-          payload: |
-            {
-              "attachments": [
-                {
-                  "color": "${{ job.status == 'success' && 'good' || 'danger' }}",
-                  "title": "${{ github.repository }}",
-                  "title_link": "https://github.com/${{ github.repository }}",
-                  "text": "docker build image result",
-                  "fields": [
-                    {
-                      "title": "Image",
-                      "value": "<https://hub.docker.com/r/${{ env.IMAGE_NAME }}|${{ env.IMAGE_NAME }}:${{ env.SS_VERSION }}>",
-                      "short": true
-                    },
-                    {
-                      "title": "Status",
-                      "value": "${{ job.status }}",
-                      "short": true
-                    }
-                  ],
-                  "footer": "Github Actions",
-                  "footer_icon": "https://github.githubassets.com/favicon.ico"
-                }
-              ]
-            }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          platforms: 'linux/amd64,linux/arm64'
+          image_name: 'easypi/shadowsocks-libev'
+          version_arg: 'SS_VERSION'
+          version_value: '3.3.6'
