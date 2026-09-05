@@ -37,12 +37,12 @@ RUN set -ex \
         && curl -sSL https://github.com/shadowsocks/ipset/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libipset \
         && curl -sSL https://github.com/shadowsocks/libcork/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libcork \
         && curl -sSL https://github.com/shadowsocks/libbloom/archive/master.tar.gz | tar xz --strip 1 -C libbloom \
-        && mkdir -p build && cd build
+        && mkdir -p build && cd build \
         && cmake .. -DCMAKE_BUILD_TYPE=Release \
         && jobs="$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)" \
         && make -j"$jobs" \
         && make install \
-        && cd .. \
+        && cd ../.. \
         && rm -rf $SS_DIR \
     && apk del TMP
 
