@@ -32,6 +32,7 @@ RUN set -ex \
                              mbedtls-dev \
                              openssl-dev \
                              pcre-dev \
+                             pkgconfig \
                              tar \
     && curl -sSL $SS_URL | tar xz \
     && cd $SS_DIR \
