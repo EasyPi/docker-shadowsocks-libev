@@ -1,12 +1,10 @@
-docker-shadowsocks-libev
-========================
+docker-shadowsocks
+==================
 
-[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build-libev.yaml/badge.svg)](https://hub.docker.com/r/easypi/shadowsocks-libev)
-[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build-rust.yaml/badge.svg)](https://hub.docker.com/r/easypi/shadowsocks-rust)
-[![release](https://img.shields.io/github/release/EasyPi/docker-shadowsocks-libev.svg)](https://github.com/EasyPi/docker-shadowsocks-libev/releases/latest)
-
-[![](http://dockeri.co/image/easypi/shadowsocks-libev)][11]
-[![](http://dockeri.co/image/easypi/shadowsocks-rust)][12]
+[![Build Libev](https://img.shields.io/github/actions/workflow/status/easypi/docker-shadowsocks-libev/build-libev.yaml?branch=master&label=build-libev)](https://hub.docker.com/r/easypi/shadowsocks-libev)
+[![Build Rust](https://img.shields.io/github/actions/workflow/status/easypi/docker-shadowsocks-libev/build-rust.yaml?branch=master&label=build-rust)](https://hub.docker.com/r/easypi/shadowsocks-rust)
+[![Stars Libev](https://img.shields.io/docker/stars/easypi/shadowsocks-libev?label=docker-stars-libev)](https://hub.docker.com/r/easypi/shadowsocks-libev)
+[![Stars Rust](https://img.shields.io/docker/stars/easypi/shadowsocks-rust?label=docker-stars-rust)](https://hub.docker.com/r/easypi/shadowsocks-rust)
 
 > 我们中国人需要管的
 >> ——— [Jackie Chan](https://zh.wikipedia.org/wiki/%E6%88%90%E9%BE%8D#%E6%94%BF%E6%B2%BB%E7%AB%8B%E5%9C%BA)
@@ -23,6 +21,15 @@ It is a port of [Shadowsocks][2] created by [@clowwindy][3], which is maintained
 [@madeye][4] and [@linusyang][5].
 
 Current version: [![release](https://img.shields.io/github/release/shadowsocks/shadowsocks-libev.svg)][6]
+
+> [!IMPORTANT]
+> Future development moved to shadowsocks-rust
+
+## What is shadowsocks-rust
+
+[Shadowsocks-rust][13] is a Rust port of shadowsocks.
+
+Current version: [![release](https://img.shields.io/github/release/shadowsocks/shadowsocks-rust.svg)][14]
 
 ## How to use these images
 
@@ -71,3 +78,5 @@ Feel free to send me pull requests. Thank you!
 [10]: https://github.com/EasyPi/docker-shadowsocks-libev/issues
 [11]: https://hub.docker.com/r/easypi/shadowsocks-libev/
 [12]: https://hub.docker.com/r/easypi/shadowsocks-rust/
+[13]: https://github.com/shadowsocks/shadowsocks-rust
+[14]: https://github.com/shadowsocks/shadowsocks-rust/releases/latest

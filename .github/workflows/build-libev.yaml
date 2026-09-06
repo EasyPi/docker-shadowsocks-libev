@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - Dockerfile
+      - libev/Dockerfile
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,6 +23,7 @@ jobs:
         uses: vimagick/dockerfiles/.github/actions/docker-build-notify@master
         with:
           platforms: 'linux/amd64,linux/arm64'
+          context: 'libev'
           image_name: 'easypi/shadowsocks-libev'
           version_arg: 'SS_VERSION'
           version_value: '3.3.6'
