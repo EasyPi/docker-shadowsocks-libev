@@ -14,7 +14,7 @@ RUN set -ex \
                           libcrypto3 \
                           libev \
                           libsodium \
-                          mbedtls \
+                          mbedtls3 \
                           pcre \
     && apk add --no-cache \
                --virtual TMP build-base \
@@ -27,7 +27,7 @@ RUN set -ex \
                              libsodium-dev \
                              libtool \
                              linux-headers \
-                             mbedtls-dev \
+                             mbedtls3-dev \
                              openssl-dev \
                              pcre-dev \
                              pkgconfig \
