@@ -15,7 +15,7 @@ RUN set -ex \
                           libev \
                           libsodium \
                           mbedtls3 \
-                          pcre \
+                          pcre2 \
     && apk add --no-cache \
                --virtual TMP build-base \
                              c-ares-dev \
@@ -29,7 +29,7 @@ RUN set -ex \
                              linux-headers \
                              mbedtls3-dev \
                              openssl-dev \
-                             pcre-dev \
+                             pcre2-dev \
                              pkgconfig \
                              tar \
     && curl -sSL $SS_URL | tar xz \
