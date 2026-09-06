@@ -40,6 +40,10 @@ RUN set -ex \
         && mkdir -p build && cd build \
         && cmake .. -DCMAKE_BUILD_TYPE=Release \
                     -DPCRE2_CONFIG=/usr/bin/pcre2-config \
+                    -DLIBMBEDTLS=/usr/lib/libmbedtls.so \
+                    -DLIBMBEDCRYPTO=/usr/lib/libmbedcrypto.so \
+                    -DLIBPCRE2=/usr/lib/libpcre2-8.so \
+                    -DLIBSODIUM=/usr/lib/libsodium.so \
         && jobs="$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)" \
         && make -j"$jobs" \
         && make install \
