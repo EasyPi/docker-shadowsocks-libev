@@ -38,7 +38,10 @@ RUN set -ex \
         && curl -sSL https://github.com/shadowsocks/libcork/archive/shadowsocks.tar.gz | tar xz --strip 1 -C libcork \
         && curl -sSL https://github.com/shadowsocks/libbloom/archive/master.tar.gz | tar xz --strip 1 -C libbloom \
         && mkdir -p build && cd build \
-        && cmake .. -DCMAKE_BUILD_TYPE=Release -DPCRE2_CONFIG=/usr/bin/pcre2-config \
+        && cmake .. -DCMAKE_BUILD_TYPE=Release \
+                    -DPCRE2_CONFIG=/usr/bin/pcre2-config \
+                    -DMBEDTLS_INCLUDE_DIR=/usr/include \
+                    -DMBEDTLS_LIBRARY=/usr/lib/libmbedtls.so \
         && jobs="$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)" \
         && make -j"$jobs" \
         && make install \
