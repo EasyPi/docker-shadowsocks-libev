@@ -1,7 +1,7 @@
 shadowsocks-rust
 ================
 
-[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build-rust.yaml/badge.svg)](https://github.com/EasyPi/docker-shadowsocks-libev)
+[![](https://github.com/easypi/docker-shadowsocks-libev/actions/workflows/build-rust.yaml/badge.svg)](https://github.com/EasyPi/docker-shadowsocks)
 
 [shadowsocks-rust][1] is a Rust port of shadowsocks.
 
